@@ -11,6 +11,23 @@ const tableHeaders: Array<HeaderType> = [
 ]
 
 const tableColumns: Array<ColumnFormat> = [
+  {value: 'email', className: 'justify-center', childClassName: 'justify-center'},
+  {value: 'username'},
+  {value: 'role', className: 'justify-center', childClassName: 'justify-center'},
+  {value: 'username', className: 'justify-center', childClassName: 'justify-center'},
+]
+
+const dummyData: Array<any> = [
+  {
+    email: 'administrator@gmail.com',
+    username: 'administrator',
+    role: 'administrator'
+  },
+  {
+    email: 'adminACK@gmail.com',
+    username: 'admin.ack',
+    role: 'admin-ack'
+  },
 ]
 
 function Index() {
@@ -29,7 +46,7 @@ function Index() {
           </Button>
         </div>
         <div className='border-b border-gray-300 w-full mt-4 mb-4'></div>
-        <Table headers={tableHeaders} columns={tableColumns} data={[]} withIndex={true} />
+        <Table headers={tableHeaders} columns={tableColumns} data={dummyData} withIndex={true} />
       </Card>
     </div>
   )
