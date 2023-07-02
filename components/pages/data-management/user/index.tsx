@@ -1,20 +1,22 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Card from '../../../card'
 import Button from '../../../forms/button'
 import Table, { HeaderType, ColumnFormat, } from '../../../table/server'
+import Modal from '../../../modal'
+import Textfield from '../../../forms/textfield'
 
 const tableHeaders: Array<HeaderType> = [
   { value: 'Email', className: 'w-1/5', childClassName: 'justify-center' },
   { value: 'Username', className: 'w-2/5' },
   { value: 'Role', className: 'w-1/5', childClassName: 'justify-center' },
-  { value: 'Action', className: 'w-1/5', childClassName: 'justify-center' },
+  { value: 'Action', className: 'w-1', childClassName: 'justify-center' },
 ]
 
 const tableColumns: Array<ColumnFormat> = [
-  {value: 'email', className: 'justify-center', childClassName: 'justify-center'},
-  {value: 'username'},
-  {value: 'role', className: 'justify-center', childClassName: 'justify-center'},
-  {value: 'username', className: 'justify-center', childClassName: 'justify-center'},
+  { value: 'email', className: 'justify-center', childClassName: 'justify-center text-sm' },
+  { value: 'username', childClassName: 'text-sm' },
+  { value: 'role', className: 'justify-center', childClassName: 'justify-center text-sm' },
+  { render: () => { return '-' }, className: 'justify-center', childClassName: 'justify-center text-sm' },
 ]
 
 const dummyData: Array<any> = [
@@ -31,14 +33,24 @@ const dummyData: Array<any> = [
 ]
 
 function Index() {
+  const [modalOpen, setModalOpen] = useState<boolean>(false)
+  const [email, setEmail] = useState<string>('')
+  const [username, setUsername] = useState<string>('')
+  const [password, setPassword] = useState<string>('')
+
+
   return (
     <div>
       <div className='mb-3 text-slate-700'>User Account Management</div>
       <div className='border-b border-gray-300 w-full mt-3 mb-3'></div>
       <Card>
         <div className='flex justify-between items-center'>
-          <p className='text-slate-700 text-sm'>Data User Account</p>
-          <Button onClick={() => { }}>
+          <div className='flex items-center'>
+            <span className='material-symbols-outlined me-2 text-slate-500'>person</span>
+            <p className='text-slate-500 text-sm'>Data User Accounts</p>
+          </div>
+
+          <Button onClick={() => { setModalOpen(true) }}>
             <span className="material-symbols-outlined me-1 text-sm">
               add_circle
             </span>
@@ -48,6 +60,20 @@ function Index() {
         <div className='border-b border-gray-300 w-full mt-4 mb-4'></div>
         <Table headers={tableHeaders} columns={tableColumns} data={dummyData} withIndex={true} />
       </Card>
+      <Modal open={modalOpen} onClose={() => { setModalOpen(false) }} title='Modal Add User Account'>
+        <Textfield type='email' value={email} onChange={(e, v) => { setEmail(v) }} placeholder='email' className='mb-3' />
+        <Textfield type='text' value={username} onChange={(e, v) => { setUsername(v) }} placeholder='username' className='mb-3' />
+        <Textfield type='password' value={password} onChange={(e, v) => { setPassword(v) }} placeholder='password' className='mb-3' />
+        <div className='border-b border-gray-300 w-full mt-3 mb-3'></div>
+        <div className='w-full flex justify-end'>
+          <Button onClick={() => { }}>
+            <span className="material-symbols-outlined me-1 text-sm">
+              check
+            </span>
+            <span className='text-sm'>Save</span>
+          </Button>
+        </div>
+      </Modal>
     </div>
   )
 }

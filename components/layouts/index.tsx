@@ -16,7 +16,7 @@ function Index({ children }: { children: React.ReactNode }) {
           <Image src="/assets/brand-logo-white.png" width={150} height={10} alt="logo" />
           {/* <p className='font-bold ms-2 sm:hidden md:hidden lg:block block'>Company Name</p> */}
         </div>
-        <SidebarItem link='#' title='Dashboard' active={path === 'dashboard'} icon='dashboard' />
+        <SidebarItem link='#' title='Dashboard' active={path.startsWith('/dashboard')} icon='dashboard' />
         <SidebarItem link='/data-management' title='Data Management' active={pathOfDataManagement.includes(path)} icon='hard_drive' />
         <SidebarItem link='#' title='Purchasing' active={false} icon='receipt_long' />
         <SidebarItem link='#' title='Production Process' active={false} icon='account_tree' />
