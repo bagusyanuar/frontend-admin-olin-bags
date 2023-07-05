@@ -4,6 +4,7 @@ import Button from '../../../forms/button'
 import Table, { HeaderType, ColumnFormat, } from '../../../table/server'
 import Modal from '../../../modal'
 import Textfield from '../../../forms/textfield'
+import Select, { DataSelectType } from '../../../forms/select'
 
 const tableHeaders: Array<HeaderType> = [
   { value: 'Email', className: 'w-1/5', childClassName: 'justify-center' },
@@ -30,6 +31,17 @@ const dummyData: Array<any> = [
     username: 'admin.ack',
     role: 'admin-ack'
   },
+]
+
+const rolesData: Array<DataSelectType> = [
+  {
+    value: 'administrator',
+    text: 'Administrator'
+  },
+  {
+    value: 'admin-ack',
+    text: 'Admin ACK'
+  }
 ]
 
 function Index() {
@@ -64,6 +76,7 @@ function Index() {
         <Textfield type='email' value={email} onChange={(e, v) => { setEmail(v) }} placeholder='email' className='mb-3' />
         <Textfield type='text' value={username} onChange={(e, v) => { setUsername(v) }} placeholder='username' className='mb-3' />
         <Textfield type='password' value={password} onChange={(e, v) => { setPassword(v) }} placeholder='password' className='mb-3' />
+        <Select data={rolesData} onChange={() => {}} />
         <div className='border-b border-gray-300 w-full mt-3 mb-3'></div>
         <div className='w-full flex justify-end'>
           <Button onClick={() => { }}>
