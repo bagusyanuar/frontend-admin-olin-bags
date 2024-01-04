@@ -30,6 +30,8 @@ function Index({ message }: InferGetServerSidePropsType<typeof getServerSideProp
     const [data, setData] = useState(initialData);
     const onDragEnd = (res: DropResult) => {
         const { source, destination, draggableId } = res;
+        console.log(res.type);
+        
         if (!destination) return;
         if (onChange(source, destination)) return;
         if (res.type === "TASK") {
